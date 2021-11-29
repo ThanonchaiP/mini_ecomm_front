@@ -7,7 +7,15 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, a, span, i {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+i {
   margin: 0;
 }
 
@@ -17,7 +25,27 @@ h1, h2, h3, h4, h5, h6, a, span, i {
   right: 0;
   width: 50%;
   height: 100%;
-  transition: .4s;
+  transition: 0.4s;
   display: block;
   z-index: -1;
+}
+
+.selected {
+  @apply text-white bg-black;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: default;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.text-glow {
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
+.h-450{
+  height: 450px;
 }

@@ -1,0 +1,54 @@
+.product-card {
+  max-width: 256px;
+  @apply text-center transition duration-200 rounded-lg cursor-pointer hover:shadow-2xl;
+}
+
+.product-card:hover .size-info {
+  opacity: 1;
+}
+
+.product-title {
+  line-height: 21px;
+  letter-spacing: 0.07em;
+  @apply inline-block tracking-wider;
+}
+
+.size-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: left;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  color: #fff;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.2s;
+}
+
+.size-info:hover{
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.add-cart {
+  width: 100%;
+  font-weight: 800;
+  height: 0;
+  opacity: 0;
+  background-color: rgb(243, 208, 93);
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
+
+.product-card:hover .add-cart {
+  opacity: 1;
+  height: auto;
+  padding: 10px 0;
+}
+
+.add-cart:hover{
+    background-color: rgb(219, 188, 85);
+}

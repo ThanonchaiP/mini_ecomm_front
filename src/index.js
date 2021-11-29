@@ -4,6 +4,10 @@ import "./index.css";
 import "./styles/tailwind.css";
 import App from "./App";
 
+//slick css
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
