@@ -68,7 +68,6 @@ const Login = () => {
         },
       });
 
-      localStorage.setItem("profile", JSON.stringify(getProfile.data.user));
       // setDialogMeta({ type: "success", msg: "เข้าสู่ระบบสำเร็จ" });
       dispatch(updateProfile(getProfile.data.user));
       reset();

@@ -27,6 +27,7 @@ const HomePage = lazy(() => import("./pages/Home"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const LoginPage = lazy(() => import("./pages/Login"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                   <Route path="/" exact component={HomePage} />
                   <Route path="/product/:id" component={ProductDetail} />
                   <Route path="/cart" component={Cart} />
+                  <Route path="/profile" component={Profile} />
                 </Switch>
                 <Footer />
               </PrivateRoute>

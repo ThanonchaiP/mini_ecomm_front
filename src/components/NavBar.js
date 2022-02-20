@@ -7,7 +7,7 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../redux/actions/authAction";
-import { loadCurrentItem,logOut } from "../redux/actions/shoppingAction";
+import { loadCurrentItem, logOut } from "../redux/actions/shoppingAction";
 
 const NavBar = () => {
   const history = useHistory();
@@ -93,17 +93,9 @@ const NavBar = () => {
                 <Avatar alt="Remy Sharp" src="https://cdnb.artstation.com/p/assets/images/images/009/836/467/medium/maria-bo-schatzis-stream-profilpicture.jpg?1521139318" />
                 <span>{profile.name}</span>
               </div>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+              <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                <MenuItem onClick={() => history.push("/profile")}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>My Purchase</MenuItem>
                 <MenuItem className="bg-red-600" onClick={logout}>
                   Logout
                 </MenuItem>
