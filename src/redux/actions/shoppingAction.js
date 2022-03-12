@@ -11,10 +11,6 @@ export const LOG_OUT = "LOG_OUT";
 
 export const addToCart = (product = {}, cart = [], cusId) => {
   let exists = false;
-  // const sizeExists = cart.find((c) => {
-  //   return c.Product._id === product.Product._id && c.size === product.size;
-  // });
-
   if (cart.length > 0) {
     for (const c of cart) {
       if (c.Product._id === product.Product._id && c.size === product.size) {

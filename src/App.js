@@ -4,13 +4,8 @@ import PrivateRoute from "./guard/auth";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./styles/mui-theme";
 // import MainLayout from "./components/layouts/MainLayout";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-
-// import HomePage from "./pages/Home";
-// import ProductDetail from "./pages/ProductDetail";
-// import LoginPage from "./pages/Login";
-// import Cart from "./pages/Cart";
+import NavBar from "./components/navbar/NavBar";
+import Footer from "./components/footer/Footer";
 
 //redux setup
 import { Provider } from "react-redux";
@@ -23,11 +18,11 @@ import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 const { store } = configureStore();
 
-const HomePage = lazy(() => import("./pages/Home"));
-const ProductDetail = lazy(() => import("./pages/ProductDetail"));
-const LoginPage = lazy(() => import("./pages/Login"));
-const Cart = lazy(() => import("./pages/Cart"));
-const Profile = lazy(() => import("./pages/Profile"));
+const HomePage = lazy(() => import("./pages/home/Home"));
+const ProductDetailPage = lazy(() => import("./pages/product/product-detail/ProductDetail"));
+const LoginPage = lazy(() => import("./pages/login/Login"));
+const CartPage = lazy(() => import("./pages/cart/Cart"));
+const ProfilePage = lazy(() => import("./pages/profile/Profile"));
 
 function App() {
   return (
@@ -42,9 +37,16 @@ function App() {
                 <NavBar />
                 <Switch>
                   <Route path="/" exact component={HomePage} />
-                  <Route path="/product/:id" component={ProductDetail} />
-                  <Route path="/cart" component={Cart} />
-                  <Route path="/profile" component={Profile} />
+                  <Route
+                    path="/product"
+                    render={({ match: { url } }) => (
+                      <>
+                        <Route path={`${url}/:id`} component={ProductDetailPage} />
+                      </>
+                    )}
+                  ></Route>
+                  <Route path="/cart" component={CartPage} />
+                  <Route path="/profile" component={ProfilePage} />
                 </Switch>
                 <Footer />
               </PrivateRoute>

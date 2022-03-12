@@ -1,5 +1,6 @@
 .product-card {
   max-width: 256px;
+  height: 410.4px;
   @apply text-center transition duration-200 rounded-lg cursor-pointer hover:shadow-2xl;
 }
 

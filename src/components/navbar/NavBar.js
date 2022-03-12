@@ -6,8 +6,8 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile } from "../redux/actions/authAction";
-import { loadCurrentItem, logOut } from "../redux/actions/shoppingAction";
+import { updateProfile } from "../../redux/actions/authAction";
+import { loadCurrentItem, logOut } from "../../redux/actions/shoppingAction";
 
 const NavBar = () => {
   const history = useHistory();
@@ -64,12 +64,12 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="ml-4 hover:text-red-600" onClick={() => setClicked(false)}>
-            <NavLink to="todo" exact>
+            <NavLink to="/product/men" exact>
               MEN
             </NavLink>
           </li>
           <li className="ml-4 hover:text-red-600" onClick={() => setClicked(false)}>
-            <NavLink to="landing" exact>
+            <NavLink to="todo" exact>
               WOMEN
             </NavLink>
           </li>

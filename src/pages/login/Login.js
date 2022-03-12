@@ -4,11 +4,11 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Alert from "../components/Alert";
+import Alert from "../../components/alert/Alert";
 import axios from "axios";
-import { BASE_API_URL } from "../constant";
+import { BASE_API_URL } from "../../constant/index";
 import { useDispatch } from "react-redux";
-import { updateProfile } from "../redux/actions/authAction";
+import { updateProfile } from "../../redux/actions/authAction";
 
 const schemaSignIn = yup
   .object({
@@ -80,9 +80,6 @@ const Login = () => {
   const handleSignUp = async (e) => {
     try {
       const { name, signUpEmail, signUpPassword } = e;
-      // console.log(e.name);
-      // console.log(e.signUpEmail);
-      // console.log(e.signUpPassword);
       const resp = await axios.post(`${BASE_API_URL}/register/employee`, {
         name: name,
         email: signUpEmail,
@@ -117,24 +114,8 @@ const Login = () => {
                 </Link>
               </div>
               <p className="mb-1 text-center">or use your account</p>
-              <TextField
-                label="Email"
-                variant="standard"
-                className="bg-gray-100"
-                {...register("signInEmail")}
-                error={errors.signInEmail ? true : false}
-                helperText={errors.signInEmail ? errors.signInEmail?.message : ""}
-              />
-              <TextField
-                label="password"
-                margin="dense"
-                variant="standard"
-                className="bg-gray-100"
-                type="password"
-                {...register("signInPassword")}
-                error={errors.signInPassword ? true : false}
-                helperText={errors.signInPassword?.message}
-              />
+              <TextField label="Email" variant="standard" className="bg-gray-100" {...register("signInEmail")} error={errors.signInEmail ? true : false} helperText={errors.signInEmail ? errors.signInEmail?.message : ""} />
+              <TextField label="password" margin="dense" variant="standard" className="bg-gray-100" type="password" {...register("signInPassword")} error={errors.signInPassword ? true : false} helperText={errors.signInPassword?.message} />
               <Link to="/" className="my-5 text-center hover:text-red-700">
                 Forgot your password?
               </Link>
@@ -174,23 +155,8 @@ const Login = () => {
                 </Link>
               </div>
               <p className="mb-3 text-center">or use your email for registration</p>
-              <TextField
-                label="Name"
-                variant="standard"
-                className="bg-gray-100"
-                {...registerSignUp("name")}
-                error={errorsSignUp.name ? true : false}
-                helperText={errorsSignUp.name?.message}
-              />
-              <TextField
-                label="Email"
-                variant="standard"
-                margin="dense"
-                className="bg-gray-100"
-                {...registerSignUp("signUpEmail")}
-                error={errorsSignUp.signUpEmail ? true : false}
-                helperText={errorsSignUp.signUpEmail?.message}
-              />
+              <TextField label="Name" variant="standard" className="bg-gray-100" {...registerSignUp("name")} error={errorsSignUp.name ? true : false} helperText={errorsSignUp.name?.message} />
+              <TextField label="Email" variant="standard" margin="dense" className="bg-gray-100" {...registerSignUp("signUpEmail")} error={errorsSignUp.signUpEmail ? true : false} helperText={errorsSignUp.signUpEmail?.message} />
               <TextField
                 label="Password"
                 variant="standard"

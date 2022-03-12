@@ -1,14 +1,15 @@
 import axios from "axios";
-import { BASE_API_URL } from "../constant/index";
+import { BASE_API_URL } from "../../../constant/index";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import numeral from "numeral";
-import Size from "../components/SizeOption";
-import Alert from "../components/Alert";
+import Size from "../../../components/size/SizeOption";
 //redux
-import { addToCart } from "../redux/actions/shoppingAction";
+import { addToCart } from "../../../redux/actions/shoppingAction";
 import { useSelector, useDispatch } from "react-redux";
+
+const Alert = lazy(() => import("../../../components/alert/Alert"));
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const ProductDetail = () => {
   const cart = useSelector((state) => state.shoppingReducer.cart);
   const [product, setProduct] = useState();
   const [size, setSize] = useState(null);
+  const [currentQty, setCurrentQty] = useState(null);
   const [amount, setAmount] = useState(1);
 
   //Alert
@@ -32,11 +34,7 @@ const ProductDetail = () => {
     try {
       const productItem = {
         Product: {
-          _id: p._id,
-          name: p.name,
-          description: p.description,
-          price: p.price,
-          type: p.type,
+          ...p,
         },
         size: size,
         amount: amount,
@@ -56,7 +54,7 @@ const ProductDetail = () => {
   };
 
   const increment = () => {
-    setAmount(amount + 1);
+    if (amount + 1 <= currentQty) setAmount(amount + 1);
   };
 
   const decrement = () => {
@@ -67,7 +65,6 @@ const ProductDetail = () => {
 
   useEffect(() => {
     getProduct();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -79,14 +76,20 @@ const ProductDetail = () => {
           <h1 className="mt-2 mb-4 text-2xl font-bold">{product.product.name}</h1>
           {/* content */}
           <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <img className="mx-auto" src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/e76b5fd7-e8fd-4595-aa20-43ce10f6d3c9/%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%97%E0%B9%89%E0%B8%B2-air-jordan-1-mid-se-7fj1ZJ.png" alt="" />
+            <Grid item xs={5}>
+              <img className="" src={product.product.photo} alt="" />
+              {/* <img
+                className="mx-auto"
+                src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/e76b5fd7-e8fd-4595-aa20-43ce10f6d3c9/%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%97%E0%B9%89%E0%B8%B2-air-jordan-1-mid-se-7fj1ZJ.png"
+                alt=""
+              /> */}
             </Grid>
             <Grid item xs={6} className="pr-3 text-lg">
               <h1 className="text-2xl font-semibold">{product.product.name}</h1>
               <h1 className="mt-1 font-semibold text-blue-700">฿{numeral(product.product.price).format("0,0.00")}</h1>
               <p className="mt-4">{product.product.description}</p>
-              <Size size={product.size_option} setSize={setSize} selected={size} />
+              <Size size={product.size_option} setSize={setSize} selected={size} setCurrentQty={setCurrentQty} />
+              {currentQty && <p className="mt-2 text-sm text-gray-500">มีสินค้าทั้งหมด {currentQty} ชิ้น</p>}
               <div className="flex items-center mt-6">
                 <h1 className="mr-3 font-semibold">QTY</h1>
                 <i className="text-4xl text-black cursor-pointer fas fa-minus-square" onClick={decrement}></i>

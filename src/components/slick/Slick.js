@@ -1,8 +1,8 @@
 import Slider from "react-slick";
-import LeftArrow from "../assets/img/left-arrow.png";
-import RightArrow from "../assets/img/right-arrow.png";
+import LeftArrow from "../../assets/img/left-arrow.png";
+import RightArrow from "../../assets/img/right-arrow.png";
 import styled from "styled-components";
-import ProductItem from "./ProductItem";
+import ProductItem from "../product-item/ProductItem";
 
 const StyledSlider = styled(Slider)`
   .slick-next {

@@ -4,11 +4,11 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { updateProfile } from "../redux/actions/authAction";
-import { BASE_API_URL } from "../constant/index";
-import { toBase64, toUrl } from "../function/index";
+import { updateProfile } from "../../redux/actions/authAction";
+import { BASE_API_URL } from "../../constant/index";
+import { toBase64, toUrl } from "../../function/index";
 import axios from "axios";
-import Alert from "../components/Alert";
+import Alert from "../../components/alert/Alert";
 import "./Profile.css";
 
 let imageBase64;
