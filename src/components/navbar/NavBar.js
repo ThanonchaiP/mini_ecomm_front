@@ -56,7 +56,12 @@ const NavBar = () => {
           <i className="text-xl text-red-500 fas fa-superscript"></i>
           <span className="ml-2 text-xl font-bold">ABC.</span>
         </Link>
-        <i className={`visible text-4xl mr-2 cursor-pointer ${clicked ? "fas fa-times" : "fas fa-bars"} fa-2x md:invisible md:mr-0`} onClick={() => setClicked(!clicked)} />
+        <i
+          className={`visible text-4xl mr-2 cursor-pointer ${
+            clicked ? "fas fa-times" : "fas fa-bars"
+          } fa-2x md:invisible md:mr-0`}
+          onClick={() => setClicked(!clicked)}
+        />
         <ul className={`text-base md:flex md:items-center md:mr-3 sm-menu ${clicked && "sm-menu-active"}`}>
           <li className="hover:text-red-600">
             <NavLink to="/" activeClassName="active" exact onClick={() => setClicked(false)}>
@@ -64,7 +69,7 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="ml-4 hover:text-red-600" onClick={() => setClicked(false)}>
-            <NavLink to="/product/men" exact>
+            <NavLink to="/product/sex/men" exact>
               MEN
             </NavLink>
           </li>
@@ -90,7 +95,10 @@ const NavBar = () => {
           {profile && (
             <li className="ml-10 hover:text-red-600" onClick={() => setClicked(false)}>
               <div className="flex items-center justify-center gap-1 cursor-pointer" onClick={handleClick}>
-                <Avatar alt="Remy Sharp" src="https://cdnb.artstation.com/p/assets/images/images/009/836/467/medium/maria-bo-schatzis-stream-profilpicture.jpg?1521139318" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://cdnb.artstation.com/p/assets/images/images/009/836/467/medium/maria-bo-schatzis-stream-profilpicture.jpg?1521139318"
+                />
                 <span>{profile.name}</span>
               </div>
               <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

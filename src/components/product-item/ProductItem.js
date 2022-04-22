@@ -19,8 +19,15 @@ const ProductItem = (props) => {
         <div className="mx-2 product-card">
           <div className="h-full p-2">
             <div className="relative overflow-hidden rounded-md">
-              <img src={data.photo ? data.photo : "https://www.mcshop.com/catalog/product/_/_/__regular___mssz13030_l_1__5.jpg?width=240"} alt="" onClick={handleClick} />
-              {/* <img src="https://www.mcshop.com/catalog/product/_/_/__regular___mssz13030_l_1__5.jpg?width=240" alt="" onClick={handleClick} /> */}
+              <img
+                src={
+                  data.image
+                    ? data.image
+                    : "https://www.mcshop.com/catalog/product/_/_/__regular___mssz13030_l_1__5.jpg?width=240"
+                }
+                alt=""
+                onClick={handleClick}
+              />
               <div className="size-info" onClick={() => addToCart(data)}>
                 <i className="mr-1 fas fa-shopping-cart"></i>
                 <h1 className="text-base">เพิ่มลงตะกร้าสินค้า</h1>
@@ -30,7 +37,9 @@ const ProductItem = (props) => {
               <div className="pt-3 max-h-16">
                 <span className="product-title">{data.name}</span>
               </div>
-              <span className="inline-block w-full my-2 text-2xl font-medium">฿ {numeral(data.price).format("0,0.00")}</span>
+              <span className="inline-block w-full my-2 text-2xl font-medium">
+                ฿ {numeral(data.price).format("0,0.00")}
+              </span>
             </div>
           </div>
         </div>

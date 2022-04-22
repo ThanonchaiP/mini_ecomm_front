@@ -23,6 +23,7 @@ const ProductDetailPage = lazy(() => import("./pages/product/product-detail/Prod
 const LoginPage = lazy(() => import("./pages/login/Login"));
 const CartPage = lazy(() => import("./pages/cart/Cart"));
 const ProfilePage = lazy(() => import("./pages/profile/Profile"));
+const MenPage = lazy(() => import("./pages/product/men/Men"));
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
                     path="/product"
                     render={({ match: { url } }) => (
                       <>
-                        <Route path={`${url}/:id`} component={ProductDetailPage} />
+                        <Route path={`${url}/:id`} exact component={ProductDetailPage} />
+                        <Route path={`${url}/sex/men`} component={MenPage} />
                       </>
                     )}
                   ></Route>

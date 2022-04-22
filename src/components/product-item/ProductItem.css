@@ -8,6 +8,10 @@
   opacity: 1;
 }
 
+.product-card img {
+  min-height: 300px;
+}
+
 .product-title {
   line-height: 21px;
   letter-spacing: 0.07em;
@@ -30,7 +34,7 @@
   transition: 0.2s;
 }
 
-.size-info:hover{
+.size-info:hover {
   background: rgba(0, 0, 0, 0.7);
 }
 
@@ -50,6 +54,6 @@
   padding: 10px 0;
 }
 
-.add-cart:hover{
-    background-color: rgb(219, 188, 85);
+.add-cart:hover {
+  background-color: rgb(219, 188, 85);
 }

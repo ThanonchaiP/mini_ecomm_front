@@ -77,12 +77,7 @@ const ProductDetail = () => {
           {/* content */}
           <Grid container spacing={2}>
             <Grid item xs={5}>
-              <img className="" src={product.product.photo} alt="" />
-              {/* <img
-                className="mx-auto"
-                src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/e76b5fd7-e8fd-4595-aa20-43ce10f6d3c9/%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%97%E0%B9%89%E0%B8%B2-air-jordan-1-mid-se-7fj1ZJ.png"
-                alt=""
-              /> */}
+              <img className="" src={product.product.image} alt="" />
             </Grid>
             <Grid item xs={6} className="pr-3 text-lg">
               <h1 className="text-2xl font-semibold">{product.product.name}</h1>
@@ -97,10 +92,18 @@ const ProductDetail = () => {
                 <i className="text-4xl text-black cursor-pointer fas fa-plus-square" onClick={increment}></i>
               </div>
               <div className="flex gap-4 mt-6">
-                <button disabled={!size} onClick={() => addCart(product.product)} className="w-1/2 py-2 font-bold transition border-2 border-black hover:bg-black hover:text-white">
+                <button
+                  disabled={!size}
+                  onClick={() => addCart(product.product)}
+                  className="w-1/2 py-2 font-bold transition border-2 border-black hover:bg-black hover:text-white"
+                >
                   ADD TO CART
                 </button>
-                <button disabled={!size} onClick={buyNow} className="w-1/2 font-bold text-white transition bg-red-700 text-glow hover:bg-red-900 hover:text-white">
+                <button
+                  disabled={!size}
+                  onClick={buyNow}
+                  className="w-1/2 font-bold text-white transition bg-red-700 text-glow hover:bg-red-900 hover:text-white"
+                >
                   BUY NOW
                 </button>
               </div>

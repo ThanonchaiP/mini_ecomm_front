@@ -1,0 +1,6 @@
+.filter {
+  width: 25%;
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
