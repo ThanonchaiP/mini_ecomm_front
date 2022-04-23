@@ -12,7 +12,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     const resp = await axios.get(`${BASE_API_URL}/product?pageSize=${10}`);
-    setProducts(resp.data.data.product);
+    setProducts(resp.data.data);
   };
 
   useEffect(() => {

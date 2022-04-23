@@ -13,13 +13,12 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
-import queryString from "querystring";
+import "./Filter.css";
 
-const Filter = () => {
-  const [products, setProducts] = React.useState([]);
+const Filter = ({ setProducts }) => {
   const [size, setSize] = React.useState([]);
   const [productType, setProductType] = React.useState([]);
-  const [params, setParams] = React.useState({ type: [], size: [], sort_by: "", page: 1 });
+  const [params, setParams] = React.useState({ type: [], size: [], sort_by: "none", page: 1 });
 
   const onSelectSize = (sizeId) => {
     for (let i = 0; i < params.size.length; i++) {
@@ -45,6 +44,23 @@ const Filter = () => {
     setParams({ ...params, type: params.type });
   };
 
+  const onSortBy = (event) => {
+    setParams({ ...params, sort_by: event.target.value });
+  };
+
+  const loadProduct = async () => {
+    const prms = new URLSearchParams(params);
+    prms.delete("type");
+    prms.delete("size");
+
+    const result = await axios.get(
+      `${
+        process.env.REACT_APP_API_URL
+      }/product?${prms.toString()}&type=${params.type.toString()}&size=${params.size.toString()}`
+    );
+    setProducts(result.data.data);
+  };
+
   React.useEffect(() => {
     const loadProductType = async () => {
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/product_type`);
@@ -60,27 +76,12 @@ const Filter = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log("useEF params");
-
-    const loadProduct = async () => {
-      const prms = new URLSearchParams(params);
-      prms.delete("type");
-      prms.delete("size");
-      const result = await axios.get(
-        `${
-          process.env.REACT_APP_API_URL
-        }/product?${prms.toString()}&type=${params.type.toString()}&size=${params.size.toString()}`
-      );
-      console.log(result.data);
-      // console.log(test);
-    };
-
     loadProduct();
-    // console.log(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
   return (
-    <div className="px-2 bg-white filter">
+    <div className="px-2 filter">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold">Filter</h3>
         <button className="px-5 py-2 bg-gray-300 rounded-sm hover:bg-gray-200">Reset</button>
@@ -101,9 +102,9 @@ const Filter = () => {
               {productType &&
                 productType.map((type) => {
                   return (
-                    <Grid item xs={12} md={6} xl={4} key={type._id}>
+                    <Grid item xs={12} md={6} key={type._id}>
                       <FormControlLabel
-                        control={<Checkbox onChange={() => onSelectType(type._id)} />}
+                        control={<Checkbox size="small" onChange={() => onSelectType(type._id)} />}
                         label={type.name}
                       />
                     </Grid>
@@ -141,13 +142,21 @@ const Filter = () => {
         </AccordionDetails>
       </Accordion>
 
-      <Select className="mt-3" value={10} sx={{ width: "100%" }} inputProps={{ "aria-label": "Without label" }}>
-        <MenuItem value="">
+      <Select
+        className="mt-3"
+        value={params.sort_by}
+        sx={{ width: "100%" }}
+        inputProps={{ "aria-label": "Without label" }}
+        placeholder="Sort By"
+        onChange={onSortBy}
+      >
+        <MenuItem value={"none"} disabled>
           <em>Sort By</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value="high">PRICE HIGH TO LOW</MenuItem>
+        <MenuItem value="low">PRICE LOW TO HIGH</MenuItem>
+        <MenuItem value="asc">NAME A-Z</MenuItem>
+        <MenuItem value="desc">NAME Z-A</MenuItem>
       </Select>
     </div>
   );
